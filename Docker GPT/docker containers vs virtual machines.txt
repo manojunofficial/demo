@@ -1,0 +1,13 @@
+docker containers vs virtual machines
+
+Docker containers and virtual machines (VMs) are two different technologies that serve a similar purpose: running applications in an isolated environment. However, there are some key differences between the two:
+
+Resource usage: Docker containers are generally more lightweight than VMs because they share the host operating system's kernel, while VMs require a full operating system to be installed. This means that Docker containers use fewer resources and can be more efficient in terms of resource usage.
+
+Startup time: Docker containers can start up much faster than VMs because they don't need to boot an entire operating system. Instead, they use the host operating system's resources directly. This can be especially important for applications that need to scale quickly or respond to sudden spikes in traffic.
+
+Isolation: Both Docker containers and VMs provide a level of isolation for running applications, but the level of isolation is different. Docker containers share the host operating system's kernel, so they may not provide as strong of an isolation as VMs, which have their own operating system instance. However, Docker provides features like namespaces and control groups that can help isolate containers from each other and from the host system.
+
+Portability: Docker containers are generally more portable than VMs because they can run on any system that has Docker installed, regardless of the underlying operating system or hardware. VMs can also be portable, but they typically require a hypervisor or virtualization software to be installed on the host system.
+
+In summary, Docker containers and VMs are both useful technologies for running applications in an isolated environment. Docker containers are generally more lightweight and provide faster startup times, while VMs provide stronger isolation and can be more portable. The choice between the two depends on the specific needs of your application and environment.

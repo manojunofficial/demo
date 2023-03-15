@@ -1,0 +1,15 @@
+why to use docker 
+
+Docker is a popular containerization platform that allows you to package your applications and their dependencies into a portable and isolated container. There are several reasons why you might want to use Docker:
+
+Consistent Environments: Docker ensures that your application runs consistently across different environments, such as development, testing, and production. This helps to prevent issues that may arise due to differences in dependencies or configurations.
+
+Isolation: Docker containers provide a high level of isolation from the underlying system, meaning that changes made to the container do not affect the host system, and vice versa. This makes it easier to manage dependencies and avoid conflicts with other applications running on the same system.
+
+Portability: Docker containers can be easily moved between different environments, such as from a developer's laptop to a testing environment or production server, without the need for any additional configuration.
+
+Resource Efficiency: Docker containers are lightweight and use fewer resources than traditional virtual machines. This means that you can run more containers on a single server, making more efficient use of your hardware resources.
+
+Easy Deployment: Docker makes it easy to deploy and scale your application, allowing you to quickly spin up new instances of your application as needed.
+
+Overall, Docker can help simplify the development and deployment process, improve consistency and portability, and make better use of your hardware resources.

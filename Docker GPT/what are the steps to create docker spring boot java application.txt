@@ -1,0 +1,23 @@
+what are the steps to create docker spring boot java application
+
+Here are the general steps to create a Dockerized Spring Boot Java application:
+
+Create a Spring Boot application: Use Spring Initializr or any other tool to create a new Spring Boot project.
+
+Write the application code: Develop the business logic of the application as per the requirements.
+
+Create a Dockerfile: A Dockerfile is a script that contains instructions to build a Docker image for your application. You can use any text editor to create a Dockerfile.
+
+Define the base image: Specify the base image for your application in the Dockerfile. For example, you can use a JDK-based image as the base image.
+
+Add the application code: Add the application code to the Dockerfile using the ADD or COPY command.
+
+Set the working directory: Set the working directory for the application using the WORKDIR command.
+
+Build the Docker image: Use the docker build command to build the Docker image for your application. For example, docker build -t myapp:latest .
+
+Run the Docker container: Once the Docker image is built, use the docker run command to run the Docker container for your application. For example, docker run -p 8080:8080 myapp:latest
+
+Verify the application: Access the application at http://localhost:8080 to verify that it is running correctly in the Docker container.
+
+These are the general steps to create a Dockerized Spring Boot Java application. However, the actual steps may vary depending on your specific application and requirements.

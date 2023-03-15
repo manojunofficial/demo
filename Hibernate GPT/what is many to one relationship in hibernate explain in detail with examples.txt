@@ -1,0 +1,60 @@
+what is many to one relationship in hibernate explain in detail with examples
+
+In Hibernate, a many-to-one relationship is a type of association between two entities where multiple instances of one entity can be associated with a single instance of another entity.
+
+For example, consider a scenario where we have two entities, Employee and Department, and each employee is associated with only one department. In this case, we can model this relationship as a many-to-one association between Employee and Department.
+
+To define a many-to-one relationship in Hibernate, we can use the @ManyToOne annotation. Here's an example code snippet to demonstrate:
+
+java
+Copy code
+@Entity
+public class Employee {
+    @Id
+    private Long id;
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+    // constructors, getters and setters
+}
+
+@Entity
+public class Department {
+    @Id
+    private Long id;
+    private String name;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<Employee> employees = new ArrayList<>();
+
+    // constructors, getters and setters
+}
+In the Employee class, we define a @ManyToOne association with the Department entity using the department field. The JoinColumn annotation specifies the foreign key column name that will be used to map the association.
+
+In the Department class, we define a @OneToMany association with the Employee entity using the employees field. The mappedBy attribute specifies that the Employee entity is the owner of the relationship. The cascade = CascadeType.ALL attribute specifies that any changes made to the Department entity should also be applied to its associated Employee entities.
+
+We can then use Hibernate APIs to save, retrieve and update instances of these entities and their associations.
+
+For example, to create a new department with two employees, we can write:
+
+java
+Copy code
+Department department = new Department();
+department.setName("Sales");
+
+Employee employee1 = new Employee();
+employee1.setName("John Doe");
+employee1.setDepartment(department);
+
+Employee employee2 = new Employee();
+employee2.setName("Jane Doe");
+employee2.setDepartment(department);
+
+department.getEmployees().add(employee1);
+department.getEmployees().add(employee2);
+
+session.save(department);
+In this example, we create a new Department instance and set its name field. We also create two new Employee instances and set their name and department fields. We then add the two Employee instances to the employees field of the Department instance using the add method. Finally, we save the Department instance to the database using the save method of the Hibernate Session object.

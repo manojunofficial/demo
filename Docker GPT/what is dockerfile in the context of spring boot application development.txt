@@ -1,0 +1,25 @@
+Question: what is dockerfile in the context of spring boot application development ?
+
+Answer: 
+
+* A Dockerfile is a script that contains a set of instructions to build a Docker image for a specific application or service. In the context of Spring Boot application development, a Dockerfile is used to build a Docker image that contains the necessary components to run the Spring Boot application in a Docker container.
+
+* The Dockerfile typically starts with a base image that provides a minimal operating system and runtime environment, such as Alpine Linux or Ubuntu. The Dockerfile then adds the required dependencies and files for the Spring Boot application, including the JAR file, configuration files, and any other assets needed to run the application.
+
+Here's an example of a simple Dockerfile for a Spring Boot application:
+
+# Set the base image
+FROM openjdk:11-alpine
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the JAR file to the container
+COPY target/myapp.jar /app
+
+# Set the command to run the application
+CMD ["java", "-jar", "myapp.jar"]
+
+* In this example, the Dockerfile sets the base image to OpenJDK 11 on Alpine Linux, sets the working directory to /app, copies the myapp.jar file to the container, and specifies the command to run the application.
+
+* Once the Dockerfile is created, you can use the docker build command to build the Docker image and the docker run command to run the Spring Boot application in a Docker container.

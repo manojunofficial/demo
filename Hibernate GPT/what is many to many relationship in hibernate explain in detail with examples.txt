@@ -1,0 +1,64 @@
+what is many to many relationship in hibernate explain in detail with examples
+
+In Hibernate, a many-to-many relationship is a type of association between two entities where multiple instances of one entity can be associated with multiple instances of another entity.
+
+For example, consider a scenario where we have two entities, Student and Course, and each student can enroll in multiple courses, and each course can be taken by multiple students. In this case, we can model this relationship as a many-to-many association between Student and Course.
+
+To define a many-to-many relationship in Hibernate, we need to use an intermediate entity that holds the association between the two entities. This intermediate entity is commonly referred to as a "join table". The join table typically contains foreign key columns that reference the primary keys of the two entities being associated.
+
+Here's an example code snippet to demonstrate how to model a many-to-many association using a join table:
+
+
+@Entity
+public class Student {
+    @Id
+    private Long id;
+    private String name;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "student_course",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses = new ArrayList<>();
+
+    // constructors, getters and setters
+}
+
+@Entity
+public class Course {
+    @Id
+    private Long id;
+    private String name;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Student> students = new ArrayList<>();
+
+    // constructors, getters and setters
+}
+In the Student class, we define a @ManyToMany association with the Course entity using the courses field. The JoinTable annotation specifies the name of the join table to be used for mapping the association. The joinColumns attribute specifies the foreign key column name that will be used to reference the Student entity, and the inverseJoinColumns attribute specifies the foreign key column name that will be used to reference the Course entity.
+
+In the Course class, we define a @ManyToMany association with the Student entity using the students field. The mappedBy attribute specifies the name of the inverse side of the association.
+
+We can then use Hibernate APIs to save, retrieve and update instances of these entities and their associations.
+
+For example, to create a new Student instance and enroll them in two courses, we can write:
+
+java
+Copy code
+Student student = new Student();
+student.setName("John Doe");
+
+Course course1 = new Course();
+course1.setName("Math");
+
+Course course2 = new Course();
+course2.setName("Science");
+
+student.getCourses().add(course1);
+student.getCourses().add(course2);
+
+course1.getStudents().add(student);
+course2.getStudents().add(student);
+
+session.save(student);
+In this example, we create a new Student instance and set its name field. We also create two new Course instances and set their name fields. We then add the two Course instances to the courses field of the Student instance using the add method. Finally, we add the Student instance to the students field of each Course instance. We then save the Student instance to the database using the save method of the Hibernate Session object.

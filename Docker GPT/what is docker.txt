@@ -1,0 +1,11 @@
+Question: what is docker ? 
+
+* Docker is a platform for developing, deploying, and running applications inside containers. Containers are lightweight, portable, and self-contained environments that run applications and their dependencies, isolated from the underlying host system.
+
+* Docker provides a way to package an application and its dependencies into a single, portable unit called a Docker image. These images can be easily shared and distributed, allowing developers to work on their applications in a consistent environment and deploy them to various environments, such as development, testing, or production, with ease.
+
+* When a Docker image is run, it creates a container, which is an isolated runtime environment that shares the host operating system's kernel. Each container has its own file system, network, and resources, allowing applications to run independently of each other.
+
+* Docker provides a variety of tools for managing and orchestrating containers, including Docker Compose, which allows you to define and run multi-container applications, and Docker Swarm, which provides a way to manage and scale container clusters.
+
+* Overall, Docker simplifies the development and deployment of applications by providing a portable, isolated environment that can run consistently across different environments, making it a popular choice for building and deploying modern applications

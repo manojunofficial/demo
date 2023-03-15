@@ -1,0 +1,35 @@
+Explain docker java application example in details
+
+Sure! Here's an example of how you can use Docker to run a Java application:
+
+Write your Java application: First, you'll need to write your Java application. For this example, let's say we have a simple "Hello, World!" program that we want to run in a Docker container.
+
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+
+Create a Dockerfile: The next step is to create a Dockerfile, which is a script that tells Docker how to build an image for your Java application. Here's an example Dockerfile:
+Dockerfile
+Copy code
+FROM openjdk:11
+COPY Main.java .
+RUN javac Main.java
+CMD ["java", "Main"]
+This Dockerfile starts with the openjdk:11 base image, copies the Main.java file into the container, compiles it using the javac command, and then sets the default command to run the Main class using the java command.
+
+Build the Docker image: Once you have your Dockerfile, you can use the docker build command to build a Docker image for your Java application. Assuming you saved the Dockerfile in a directory called myapp, you can run the following command to build the image:
+bash
+Copy code
+docker build -t myapp .
+This command builds an image tagged myapp using the Dockerfile in the current directory (.).
+
+Run the Docker container: Once you have built the Docker image, you can use the docker run command to run a container based on that image. Here's an example command:
+bash
+Copy code
+docker run myapp
+This command starts a container based on the myapp image and runs the default command specified in the Dockerfile, which in this case is to run the Main class using the java command. The output should be "Hello, World!".
+
+And that's it! This is a very simple example, but it demonstrates how you can use Docker to run a Java application. You can use the same basic approach to build and run more complex Java applications with dependencies on external libraries, databases, and other services.

@@ -1,0 +1,60 @@
+what is one to one relationship in hibernate explain in detail with examples
+
+In Hibernate, a one-to-one relationship is a type of association between two entities where one instance of an entity is associated with one and only one instance of another entity.
+
+For example, consider a scenario where we have two entities, Employee and Address, and each employee has only one address associated with it. In this case, we can model this relationship as a one-to-one association between Employee and Address.
+
+To define a one-to-one relationship in Hibernate, we can use the @OneToOne annotation. Here's an example code snippet to demonstrate:
+
+java
+Copy code
+@Entity
+public class Employee {
+    @Id
+    private Long id;
+    private String name;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    // constructors, getters and setters
+}
+
+@Entity
+public class Address {
+    @Id
+    private Long id;
+    private String street;
+    private String city;
+    private String state;
+    private String zipCode;
+
+    @OneToOne(mappedBy = "address")
+    private Employee employee;
+
+    // constructors, getters and setters
+}
+In the Employee class, we define a @OneToOne association with the Address entity using the address field. The cascade = CascadeType.ALL attribute specifies that any changes made to the Employee entity should also be applied to its associated Address entity.
+
+In the Address class, we define a bidirectional association with the Employee entity using the employee field. The mappedBy attribute specifies that the Employee entity is the owner of the relationship.
+
+We can then use Hibernate APIs to save, retrieve and update instances of these entities and their associations.
+
+For example, to create a new employee with an address, we can write:
+
+java
+Copy code
+Employee employee = new Employee();
+employee.setName("John Doe");
+
+Address address = new Address();
+address.setStreet("123 Main Street");
+address.setCity("Anytown");
+address.setState("NY");
+address.setZipCode("12345");
+
+employee.setAddress(address);
+
+session.save(employee);
+In this example, we create a new Employee instance and set its name field. We also create a new Address instance and set its fields. We then set the address field of the Employee instance to the Address instance. Finally, we save the Employee instance to the database using the save method of the Hibernate Session object.
